@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import ejb.TransaccionBeanRemote;
+//import ejb.TransaccionBeanRemote;
 import java.util.Properties;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -24,34 +24,35 @@ import javax.naming.NamingException;
 @RequestScoped
 public class LoginBean{
     
-    private TransaccionBeanRemote prueba;
-    private String text;
+
+    private String usuario;
+    private String contrasenia;
 
     /**
      * Creates a new instance of LoginBean
      */
     public LoginBean() throws NamingException {
         //super();
-        Properties properties = new Properties();
-        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.230.43");
-        properties.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
-        InitialContext ctx = new InitialContext(properties);
-        prueba = (TransaccionBeanRemote)ctx.lookup("java:global/NegocioALI/TransaccionBean");
+     
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+ 
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
     
-    public String getText(){
-        return this.text;
-    }
-    
-    public void setText(String text){
-        this.text = text;
-    }
-    
-    public String buttonPerform(){
-        System.out.println(prueba.prueba(text));
-        return "";
-    }
-    
-    
-    
+
+  
 }
