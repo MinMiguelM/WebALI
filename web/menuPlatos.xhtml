@@ -6,11 +6,12 @@
     <h:head>
         <CENTER> <title>ALIWeb</title></CENTER>
     </h:head>
+   <link rel="stylesheet" href="menuPlatos.css" />
     <h:body>
-        <h1>Bienvenidos a ALI Restaurantes </h1>
+        <h1> ¡Bienvenidos a ALI Restaurantes! </h1>
         <p> ¡Aquí encontraras todos platos que tenemos para ti!</p>
         <h:form>
-            Plato que desea buscar: <h:inputText value="#{listaPlatos.nombrePlato}" />
+           <h2>  Plato que desea buscar: </h2> <h:inputText value="#{listaPlatos.nombrePlato}" />
             <h:commandButton value="Buscar" action="#{listaPlatos.buttonPerform}"/>
         </h:form>
         <f:view>
@@ -26,11 +27,10 @@
                         <h:outputText value="#{item.id}"/>
                     </h:column>
                     <h:column>
-                        <h:commandLink id = "l1" value="#{item.nombre}" action="#{listaPlatos.buttonAgregar(item)}">   
-                        <f:facet name="header">
+                             <f:facet name="header">
                             <h:outputText value="Nombre"/>
                         </f:facet>
-                        
+                        <h:commandLink id = "l1" value="#{item.nombre}" action="#{listaPlatos.buttonAgregar(item)}">   
                         </h:commandLink>
                     </h:column>
                     <h:column>
@@ -51,7 +51,6 @@
         
         <f:view>
 
-
             <h:form>
                 <h1><h:outputText value="List de platos agregados"/></h1>
                 <p> Haga clic en el enlace para quitar el plato de su selección</p>
@@ -63,10 +62,11 @@
                         <h:outputText value="#{item.id}"/>
                     </h:column>
                     <h:column>
-                        <h:commandLink id = "l2" value="#{item.nombre}" action="#{listaPlatos.eliminar(item)}">   
-                        <f:facet name="header">
+                         <f:facet name="header">
                             <h:outputText value="Nombre"/>
                         </f:facet>
+                        <h:commandLink id = "l2" value="#{item.nombre}" action="#{listaPlatos.eliminar(item)}">   
+                       
                         </h:commandLink>
                     </h:column>
                     <h:column>
@@ -82,7 +82,11 @@
                         <h:outputText value="#{item.descripcion}"/>
                     </h:column>
                 </h:dataTable>
+            <br/>
+                <h:outputLabel value = "Total:  #{listaPlatos.precioTotal}"/><br/>
                 <h:commandButton  value="Pagar" action="#{listaPlatos.buttonPagar()}"/>
+               <!-- <p><a href="javascript.void(0)" onclick="window.open('pop/popup.html',,'width=700,height=400,noresize')"></a></>
+               <input type="Boton" value="Abrir ventana " onclick="ventanaNueva('pagina.html')" /> -->
             </h:form>
             <h:form>
                 

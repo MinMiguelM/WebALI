@@ -5,6 +5,7 @@
  */
 package cintermedia;
 
+
 import entities.Plato;
 import entities.Usuario;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Properties;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import logica.ConexionBeanRemote;
+
 
 /**
  *
@@ -26,7 +28,7 @@ public class ALIWebIntermedia {
     public ALIWebIntermedia() throws Exception {
         
         Properties properties = new Properties();
-        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.230.30");
+        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.10.15");
         properties.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
         InitialContext ctx = new InitialContext(properties);
         conexion = (ConexionBeanRemote)ctx.lookup("java:global/NegocioALI/ConexionBean");

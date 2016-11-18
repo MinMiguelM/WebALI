@@ -10,7 +10,9 @@ import com.sun.codemodel.JExpr;
 import com.sun.faces.component.visit.FullVisitContext;
 import entities.Plato;
 import entities.Usuario;
+import static java.awt.SystemColor.window;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +26,7 @@ import javax.faces.component.visit.VisitCallback;
 import javax.faces.component.visit.VisitContext;
 import javax.faces.component.visit.VisitResult;
 import javax.faces.context.FacesContext;
+import static jdk.nashorn.internal.objects.NativeFunction.function;
 
 /**
  *
@@ -31,7 +34,7 @@ import javax.faces.context.FacesContext;
  */
 @Named(value = "listaPlatos")
 @SessionScoped
-public class ListaPlato implements Serializable{
+public class ListaPlato implements Serializable {
 
     /**
      * Creates a new instance of ListaPlatos
@@ -41,6 +44,33 @@ public class ListaPlato implements Serializable{
     String nombrePlato;
     List<Plato> seleccionPlatos;
     Boolean selected;
+    int precioTotal;
+    String text;
+
+    public ListaPlato() throws Exception {
+        seleccionPlatos = new ArrayList<>();
+        listP = new ArrayList<Plato>();
+        intermedia = new ALIWebIntermedia();
+        precioTotal = 0;
+        text = new String();
+
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public int getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(int precioTotal) {
+        this.precioTotal = precioTotal;
+    }
 
     public Boolean getSelected() {
         return selected;
@@ -50,8 +80,6 @@ public class ListaPlato implements Serializable{
         this.selected = selected;
     }
 
-    
-    
     public List<Plato> getSeleccionPlatos() {
         return seleccionPlatos;
     }
@@ -59,7 +87,7 @@ public class ListaPlato implements Serializable{
     public void setSeleccionPlatos(List<Plato> seleccionPlatos) {
         this.seleccionPlatos = seleccionPlatos;
     }
-    
+
     public ALIWebIntermedia getIntermedia() {
         return intermedia;
     }
@@ -76,13 +104,6 @@ public class ListaPlato implements Serializable{
         this.nombrePlato = nombrePlato;
     }
 
-    public ListaPlato() throws Exception {
-        seleccionPlatos = new ArrayList<>();
-        listP = new ArrayList<Plato>();
-        intermedia = new ALIWebIntermedia();
-
-    }
-
     public void setListP(List<Plato> listP) {
         this.listP = listP;
     }
@@ -91,7 +112,7 @@ public class ListaPlato implements Serializable{
         listP = intermedia.getPlatos(nombrePlato);
         return "";
     }
-    
+
     public String buttonPagar() {
         Usuario u = new Usuario();
         u.setCedula("123");
@@ -100,50 +121,47 @@ public class ListaPlato implements Serializable{
         u.setNombre("lalok de andres");
         u.setPasswordmispagos("pass");
         u.setUsuariomispagos("umispagos");
-        System.out.println(intermedia.pago(u, listP));
-        return "pago.xhtml";
+        //System.out.println(intermedia.pago(u, listP));
+        if(intermedia.pago(u, listP)>0)
+            text = "Transacción exitosa.";
+        else
+            text = "Transacción sin éxito.";
+        return "confirmacionPago.xhtml";
     }
-    
-    /*public UIComponent findComponent(final String id){
-        FacesContext context = FacesContext.getCurrentInstance();
-        UIViewRoot root = context.getViewRoot();
-        final UIComponent [] found = new UIComponent[1];
-        
-        root.visitTree(new FullVisitContext(context), new VisitCallback() {
-            @Override
-            public VisitResult visit(VisitContext context, UIComponent target) {
-                if(target.getId().equals(id)){
-                    found[0] = target;
-                    return VisitResult.COMPLETE;
-                }
-                return VisitResult.ACCEPT;
-            }
-        });
-        return found[0];
-    }*/
-    
-    public void agregarCheckbox(){
-        for(int i = 0;i< listP.size();i++){
+
+    public void agregarCheckbox() {
+        for (int i = 0; i < listP.size(); i++) {
             List<Boolean> lista = new ArrayList<>();
             lista.add(selected);
         }
-       
+
     }
-    
+
     public String buttonAgregar(Plato p) {
         seleccionPlatos.add(p);
-        System.out.println(seleccionPlatos.size());
+        precioTotal += p.getPrecio().intValue();
+
+        System.out.println(precioTotal);
         return "";
     }
-    
-    public String eliminar(Plato p){
+
+    public String eliminar(Plato p) {
         seleccionPlatos.remove(p);
+        precioTotal -= p.getPrecio().intValue();
+        System.out.println(precioTotal);
         return "";
     }
-   
 
     public List<Plato> getListP() {
         return listP;
+    }
+    
+    public String buttonRegresar(){
+        seleccionPlatos = new ArrayList<>();
+        listP = new ArrayList<Plato>();
+        precioTotal = 0;
+        text = new String();
+        return "menuPlatos.xhtml";
     }
 
 }
