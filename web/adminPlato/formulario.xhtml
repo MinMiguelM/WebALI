@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Información del plato</title>
+    </h:head>
+    <h:body>
+        Informacion del Plato
+        <f:view>
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Id:" for="id" />
+                        <h:inputText id="id" value="#{mostrarPlato.pl.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
+                        <h:outputLabel value="Nombre:" for="nombre" />
+                        <h:inputText id="nombre" value="#{mostrarPlato.pl.nombre}" title="Nombre" />
+                        <h:outputLabel value="Precio:" for="precio" />
+                        <h:inputText id="precio" value="#{mostrarPlato.pl.precio}" title="Precio" />
+                        <h:outputLabel value="Descripcion:" for="descripcion" />
+                        <h:inputText id="descripcion" value="#{mostrarPlato.pl.descripcion}" title="Descripcion" />
+                    </h:panelGrid>
+                    <h:commandButton value="Editar" action="#{mostrarPlato.editar(mostrarPlato.pl)}"/>
+                </h:form>
+
+                
+        </f:view>
+
+    </h:body>
+</html>
+

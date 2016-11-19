@@ -28,7 +28,7 @@ public class ALIWebIntermedia {
     public ALIWebIntermedia() throws Exception {
         
         Properties properties = new Properties();
-        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.10.15");
+        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.230.36");
         properties.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
         InitialContext ctx = new InitialContext(properties);
         conexion = (ConexionBeanRemote)ctx.lookup("java:global/NegocioALI/ConexionBean");
@@ -43,6 +43,19 @@ public class ALIWebIntermedia {
     public int pago(Usuario u, List<Plato> p){
         return conexion.pago(u, p);
     }
+    
+    public boolean eliminarPlato(Plato p){
+        return conexion.eliminarPlato(p);
+    }
+    
+    public Plato getPlatoByName(String pl){
+        return conexion.getPlatoByName(pl);
+    }
+    
+    public void editarPlato(Plato p){
+        conexion.editarPlato(p);
+    }
+    
 
   
     

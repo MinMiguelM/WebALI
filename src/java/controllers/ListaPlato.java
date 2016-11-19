@@ -117,7 +117,7 @@ public class ListaPlato implements Serializable {
         Usuario u = new Usuario();
         u.setCedula("123");
         u.setCorreo("asd");
-        u.setFechaNacimiento(new Date());
+        u.setFechaNacimiento("12/6/1990");
         u.setNombre("lalok de andres");
         u.setPasswordmispagos("pass");
         u.setUsuariomispagos("umispagos");
