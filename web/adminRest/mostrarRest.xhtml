@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+       <title>Administracion de platos.</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p>  Restaurante que desea buscar: </p> <h:inputText value="#{mostrarRestaurante.name}" />
+            <h:commandButton value="Buscar" action="#{mostrarRestaurante.buscarRest}"/>
+        </h:form>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Seleccione un restaurante a eliminar o editar."/></h1>
+                <h:dataTable value="#{mostrarRestaurante.listaRest}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre"/>
+                        </f:facet>
+                        <h:commandLink id = "l3" value="#{item.nombre}" action="#{mostrarRestaurante.agregar(item)}">   
+                        </h:commandLink>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Dirección"/>
+                        </f:facet>
+                        <h:outputText value="#{item.direccion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripcion"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripccion}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <h:form>
+               
+                <h:commandButton value="Editar/Crear" action="#{mostrarRestaurante.editar_crear}"/>
+            </h:form>
+        </f:view>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Plato seleccionado"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Id:"/>
+                    <h:outputText value="#{mostrarRestaurante.rest.id}" title="Id"/>
+                    <h:outputText value="Nombre:"/>
+                    <h:outputText value="#{mostrarRestaurante.rest.nombre}" title="Nombre"/>
+                    <h:outputText value="Dirección: "/>
+                    <h:outputText value="#{mostrarRestaurante.rest.direccion}" title="Precio"/>
+                    <h:outputText value="Descripcion:"/>
+                    <h:outputText value="#{mostrarRestaurante.rest.descripccion}" title="Descripcion"/>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

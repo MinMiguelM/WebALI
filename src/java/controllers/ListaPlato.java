@@ -129,14 +129,7 @@ public class ListaPlato implements Serializable {
         return "confirmacionPago.xhtml";
     }
 
-    public void agregarCheckbox() {
-        for (int i = 0; i < listP.size(); i++) {
-            List<Boolean> lista = new ArrayList<>();
-            lista.add(selected);
-        }
-
-    }
-
+    
     public String buttonAgregar(Plato p) {
         seleccionPlatos.add(p);
         precioTotal += p.getPrecio().intValue();

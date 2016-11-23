@@ -36,6 +36,7 @@ public class MostrarPlatos implements Serializable{
         pl = new Plato();
         intermedia = new ALIWebIntermedia();
     }
+   
 
     public String getText() {
         return text;
@@ -76,7 +77,7 @@ public class MostrarPlatos implements Serializable{
     public void setP(Plato p) {
         this.pl = p;
     }
-    
+    //agregra el plato que se va a modificar o eliminar
     public String agregar(Plato p){
         pl = p;
         System.out.println(pl.getNombre());
@@ -113,7 +114,16 @@ public class MostrarPlatos implements Serializable{
     public String editar(Plato p){
         System.out.println("La nueva informacion de su plato : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nPrecio: "+p.getPrecio()+"\nDescripción: "+p.getDescripcion()+"\n");
         intermedia.editarPlato(p);
-        text = "La nuva informacion de su plato : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nPrecio: "+p.getPrecio()+"\nDescripción: "+p.getDescripcion()+"\n";
+        text = "La nueva informacion de su plato : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nPrecio: "+p.getPrecio()+"\nDescripción: "+p.getDescripcion()+"\n";
+        
+        return "informacion.xhtml";
+    }
+    
+     public String agregarPlato(Plato p) throws Exception{
+       
+       System.out.println("El plato se agregó");
+       intermedia.agregarPlato(p);
+       text = "El plato agregado es : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nPrecio: "+p.getPrecio()+"\nDescripción: "+p.getDescripcion()+"\n";
         
         return "informacion.xhtml";
     }
