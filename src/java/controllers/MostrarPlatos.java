@@ -106,6 +106,10 @@ public class MostrarPlatos implements Serializable{
         return "formulario.xhtml";
     }
     
+      public String volver(){
+        return "mostrarRest.xhtml";
+    }
+    
     public String botonRegresar(){
         listaPlatos = new ArrayList<>();
         return "mostrarPlatos.xhtml";

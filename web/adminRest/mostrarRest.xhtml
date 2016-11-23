@@ -43,15 +43,19 @@
                 </h:dataTable>
             </h:form>
             <h:form>
-               
+                <h:commandButton value="Eliminar Restaurante" action="#{mostrarRestaurante.eliminarRest()}"/>
                 <h:commandButton value="Editar/Crear" action="#{mostrarRestaurante.editar_crear}"/>
+                <h:commandButton value="Platos del restaurante: " action="#{mostrarRestaurante.platosRest()}"/>
             </h:form>
         </f:view>
+        
+        
+        
         <f:view>
 
 
             <h:form>
-                <h1><h:outputText value="Plato seleccionado"/></h1>
+                <h1><h:outputText value="Restaurante seleccionado"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputText value="Id:"/>
                     <h:outputText value="#{mostrarRestaurante.rest.id}" title="Id"/>

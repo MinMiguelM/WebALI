@@ -21,8 +21,8 @@
                         <h:outputLabel value="Descripcion:" for="descripcion" />
                         <h:inputText id="descripcion" value="#{mostrarRestaurante.rest.descripccion}" title="Descripcion" />
                     </h:panelGrid>
-                    <h:commandButton value="Editar" action="#{mostrarRestaurante.editarRest(mostrarRestaurante.name)}"/>
-                    <h:commandButton value="Agregar restaurante" action="#{mostrarPlato.editar(mostrarRestaurante.name)}"/>
+                    <h:commandButton value="Editar" action="#{mostrarRestaurante.editarRestaurante(mostrarRestaurante.rest)}"/>
+                    <h:commandButton value="Agregar restaurante" action="#{mostrarRestaurante.agregarRestaurante(mostrarRestaurante.rest)}"/>
                 </h:form>
 
                 

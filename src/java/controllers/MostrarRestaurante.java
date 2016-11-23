@@ -23,6 +23,7 @@ import javax.enterprise.context.SessionScoped;
 public class MostrarRestaurante implements Serializable{
 
     List<Restaurante> listaRest;
+    List<Plato> listaP;
     Restaurante rest;
     String nombreRest;
     ALIWebIntermedia intermedia;
@@ -34,7 +35,8 @@ public class MostrarRestaurante implements Serializable{
     // CONSTRUCTOR RESTAURANTE
     public MostrarRestaurante() throws Exception {
         listaRest = new ArrayList<>();
-        rest = new Restaurante();
+         listaP = new ArrayList<>();
+         rest = new Restaurante();
         intermedia = new ALIWebIntermedia();
         
     }
@@ -44,15 +46,22 @@ public class MostrarRestaurante implements Serializable{
     
     public String buscarRest(){
         System.out.println(nombreRest);
+       
         listaRest = intermedia.getRestaurantes(nombreRest);
         return "";
     }
+     public String mostrarP(){
+    
+        listaP = intermedia.getRestauranteByName(rest.getNombre()).getPlatoList();
+        return "";
+    }
+    
     
     public String editarRestaurante(Restaurante p){
         System.out.println("La nueva informacion de su restaurante es: \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nDirección: "+p.getDireccion()+"\nDescripción: "+p.getDireccion()+"\n");
         intermedia.editarRestaurante(p);
         text = "La nuva informacion de su plato : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nDirección: "+p.getDireccion()+"\nDescripción: "+p.getDireccion()+"\n";
-        
+
         return "informacionRest.xhtml";
     }
     
@@ -67,22 +76,60 @@ public class MostrarRestaurante implements Serializable{
         return "";
     }
     
+      
     public String editar_crear(){
         return "formularioRest.xhtml";
     }
+    public String platosRest(){
+        return "mostrarPlatos.xhtml";
+    }
     
-  /*  public String eliminar(){
-        boolean b = intermedia.eliminarPlato(pl);
-        System.out.println("------------->"+pl.getNombre());
-        Plato pAux = intermedia.getPlatoByName(pl.getNombre());
+     public String agregarRestaurante(Restaurante p) throws Exception{
+       
+       System.out.println("El restaurante se agregó");
+       intermedia.agregarRestaurante(p);
+       text = "El Restaurante agregado es : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nDirección: "+p.getDireccion()+"\nDescripción: "+p.getDescripccion() +"\n";
+        
+        return "informacionRest.xhtml";
+    }
+    
+   public String eliminarRest(){
+        boolean b = intermedia.eliminarRest(rest);
+        System.out.println("------------->"+rest.getNombre());
+        Restaurante pAux = intermedia.getRestauranteByName(rest.getNombre());
         if(pAux == null){
             
-            text = "Plato con nombre: "+ pl.getNombre() + " eliminado con exito.";
+            text = "Restaurante con nombre: "+ rest.getNombre() + " eliminado con exito.";
         }else
-            text = "Plato con nombre: "+ pl.getNombre() + " no pudo ser elimincado.";
-        return"informacion.xhtml";
-    }*/
+            text = "Restaurante con nombre: "+ rest.getNombre() + " no pudo ser eliminado.";
+        
+        return"informacionRest.xhtml";
+    }
+   
+
+    
+    
+
+  
+
+    public String getNombreRest() {
+        return nombreRest;
+    }
+
     // GET Y SET
+
+    public List<Plato> getListaP() {
+        return listaP;
+    }
+
+    public void setListaP(List<Plato> listaP) {
+        this.listaP = listaP;
+    }
+    
+    
+    public void setNombreRest(String nombreRest) {
+        this.nombreRest = nombreRest;
+    }
 
     public List<Restaurante> getListaRest() {
         return listaRest;

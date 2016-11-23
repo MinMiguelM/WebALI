@@ -29,7 +29,7 @@ public class ALIWebIntermedia {
     public ALIWebIntermedia() throws Exception {
         
         Properties properties = new Properties();
-        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.10.21");
+        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.230.17");
         properties.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
         InitialContext ctx = new InitialContext(properties);
         conexion = (ConexionBeanRemote)ctx.lookup("java:global/NegocioALI/ConexionBean");
@@ -68,9 +68,23 @@ public class ALIWebIntermedia {
         List<Restaurante> listR = conexion.getRestaurantes(s);
         return listR;
     }
+    
 
     public void editarRestaurante(Restaurante p) {
         conexion.editarRestaurante(p);
+    }
+
+    public void agregarRestaurante(Restaurante p) {
+       conexion.agregarRestaurante(p);
+    }
+
+    public boolean eliminarRest(Restaurante rest) {
+        
+        return conexion.eliminarRest(rest);
+    }
+    
+      public Restaurante getRestauranteByName(String pl){
+        return conexion.getRestauranteByName(pl);
     }
 
    
