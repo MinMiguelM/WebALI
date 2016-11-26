@@ -11,15 +11,15 @@
         <h1> ¡Bienvenidos a ALI Restaurantes! </h1>
         <p> ¡Aquí encontraras todos platos que tenemos para ti!</p>
         <h:form>
-           <h2>  Plato que desea buscar: </h2> <h:inputText value="#{listaPlatos.nombrePlato}" />
-            <h:commandButton value="Buscar" action="#{listaPlatos.buttonPerform}"/>
+           <h2>  Plato que desea buscar: </h2> <h:inputText value="#{mostrarPlatos.name}" />
+            <h:commandButton value="Buscar" action="#{mostrarPlatos.buscar()}"/>
         </h:form>
         <f:view>
 
             <h:form>
                 <h1><h:outputText value="Lista de platos que tenemos dispobiles"/></h1>
                 <p> Haga clic en el enlace para agregar un plato a su pedido.</p>
-                <h:dataTable value="#{listaPlatos.listP}" var="item">
+                <h:dataTable value="#{mostrarPlatos.listaPlatos}" var="item">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Id"/>

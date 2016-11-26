@@ -115,17 +115,17 @@ public class ListaPlato implements Serializable {
 
     public String buttonPagar() {
         Usuario u = new Usuario();
-        u.setCedula("123");
-        u.setCorreo("asd");
-        u.setFechaNacimiento("12/6/1990");
-        u.setNombre("lalok de andres");
-        u.setPasswordmispagos("pass");
-        u.setUsuariomispagos("umispagos");
+        // find u
         //System.out.println(intermedia.pago(u, listP));
-        if(intermedia.pago(u, listP)>0)
-            text = "Transacción exitosa.";
-        else
-            text = "Transacción sin éxito.";
+        u = intermedia.findUsuario("CC", 1010);
+        if(u != null){
+            if(intermedia.pago(u, seleccionPlatos)>0)
+                text = "Transacción exitosa.";
+            else
+                text = "Transacción sin éxito.";
+        }else{
+            text = "Usuario no encontrado.";
+        }
         return "confirmacionPago.xhtml";
     }
 

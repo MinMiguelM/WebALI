@@ -9,11 +9,12 @@
     <h:body>
      <h:form>
            
-         <h:commandButton value="Mostrar platos" action="#{mostrarRestaurante.mostrarP()}"/>
+        
         </h:form>
         <f:view>
             <h:form>
                 <h1><h:outputText value="Seleccione un plato a eliminar o editar."/></h1>
+             
                 <h:dataTable value="#{mostrarRestaurante.listaP}" var="item">
                     <h:column>
                         <f:facet name="header">
@@ -43,7 +44,8 @@
                 </h:dataTable>
             </h:form>
             <h:form>
-                <h:commandButton value="Eliminar" action="#{mostrarPlato.eliminar}"/><hr></hr>
+                 <h:commandButton value="Mostrar platos" action="#{mostrarRestaurante.mostrarP()}"/><hr></hr>
+                <h:commandButton value="Eliminar" action="#{mostrarPlato.eliminar}"/>
                 <h:commandButton value="Editar/Crear" action="#{mostrarPlato.editar_crear}"/>
                 <h:commandButton value="Volver" action="#{mostrarPlato.volver}"/>
             </h:form>

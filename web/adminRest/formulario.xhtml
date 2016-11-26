@@ -22,7 +22,8 @@
                         <h:inputText id="descripcion" value="#{mostrarPlato.pl.descripcion}" title="Descripcion" />
                     </h:panelGrid>
                     <h:commandButton value="Editar" action="#{mostrarPlato.editar(mostrarPlato.pl)}"/>
-                    <h:commandButton value="Agregar plato" action="#{mostrarPlato.agregarPlato(mostrarPlato.pl)}"/>
+                    <h:commandButton value="Agregar plato" action="#{mostrarPlato.agregarPlato(mostrarPlato.pl,mostrarRestaurante.getRest())}"/>
+                    <h:commandButton value="Volver" action="#{mostrarRest.botonRegresar()}"/>
                 </h:form>
 
                 

@@ -45,20 +45,27 @@ public class MostrarRestaurante implements Serializable{
     //Metodos
     
     public String buscarRest(){
-        System.out.println(nombreRest);
-       
         listaRest = intermedia.getRestaurantes(nombreRest);
         return "";
     }
-     public String mostrarP(){
     
+    public String mostrarP(){
+        System.out.println("here: "+rest.getNombre());
         listaP = intermedia.getRestauranteByName(rest.getNombre()).getPlatoList();
         return "";
     }
-    
+   
+  /*  public void guardarP(Plato p)
+            
+    {
+    rest.getPlatoList().add(p);
+    }*/
+            
+          
     
     public String editarRestaurante(Restaurante p){
         System.out.println("La nueva informacion de su restaurante es: \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nDirección: "+p.getDireccion()+"\nDescripción: "+p.getDireccion()+"\n");
+    
         intermedia.editarRestaurante(p);
         text = "La nuva informacion de su plato : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nDirección: "+p.getDireccion()+"\nDescripción: "+p.getDireccion()+"\n";
 
@@ -66,7 +73,11 @@ public class MostrarRestaurante implements Serializable{
     }
     
       public String botonRegresar(){
+          
         listaRest = new ArrayList<>();
+        listaP=new ArrayList<>();
+        
+   
         return "mostrarRest.xhtml";
     }
       
@@ -78,9 +89,13 @@ public class MostrarRestaurante implements Serializable{
     
       
     public String editar_crear(){
+        
+     
         return "formularioRest.xhtml";
     }
+    
     public String platosRest(){
+       
         return "mostrarPlatos.xhtml";
     }
     
@@ -88,7 +103,7 @@ public class MostrarRestaurante implements Serializable{
        
        System.out.println("El restaurante se agregó");
        intermedia.agregarRestaurante(p);
-       text = "El Restaurante agregado es : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nDirección: "+p.getDireccion()+"\nDescripción: "+p.getDescripccion() +"\n";
+       text = "El Restaurante agregado es : \nID: "+ p.getId()+"\nNombre: "+p.getNombre()+"\nDirección: "+p.getDireccion()+"\nDescripción: "+p.getDescripcion()+"\n";
         
         return "informacionRest.xhtml";
     }
@@ -108,6 +123,7 @@ public class MostrarRestaurante implements Serializable{
    
 
     
+     
     
 
   

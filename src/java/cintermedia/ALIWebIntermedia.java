@@ -9,6 +9,7 @@ package cintermedia;
 import entities.Plato;
 import entities.Restaurante;
 import entities.Usuario;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -29,15 +30,16 @@ public class ALIWebIntermedia {
     public ALIWebIntermedia() throws Exception {
         
         Properties properties = new Properties();
-        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.230.17");
+        properties.setProperty("org.omg.CORBA.ORBInitialHost", "10.192.10.32");
         properties.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
+        //properties.load(ALIWebIntermedia.class.getClassLoader().getResourceAsStream("jndi.properties"));
         InitialContext ctx = new InitialContext(properties);
         conexion = (ConexionBeanRemote)ctx.lookup("java:global/NegocioALI/ConexionBean");
     }
     
-    public void agregarPlato(Plato p) throws Exception {
+    public void agregarPlato(Plato p, Restaurante r) throws Exception {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        conexion.agregarPlato(p);
+        conexion.agregarPlato(p,r);
     }
      
     
@@ -48,6 +50,8 @@ public class ALIWebIntermedia {
     }
     
     public int pago(Usuario u, List<Plato> p){
+        
+        System.out.println("Usuario"+p.size());
         return conexion.pago(u, p);
     }
     
@@ -87,7 +91,9 @@ public class ALIWebIntermedia {
         return conexion.getRestauranteByName(pl);
     }
 
-   
+   public Usuario findUsuario(String tipo, int numero){
+       return conexion.findUsuario(tipo, numero);
+   }
     
 
   
